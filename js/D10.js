@@ -118,6 +118,8 @@ function dice() {
 }
 console.log(dice());
 
+
+
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
@@ -127,7 +129,7 @@ console.log("----ESERCIZIO 2----");
 console.log("-------------------");
 console.log("\n");
 
-function bigger(x, y) {
+function whoIsbigger(x, y) {
   if (!isNaN(x) && !isNaN(y) && arguments.length === 2) {
     if (x >= y) {
       // se sono uguali restituisco il primo
@@ -139,9 +141,9 @@ function bigger(x, y) {
     return "errore! inserisci 2 numeri!";
   }
 }
-console.log(bigger(14, -2));
-console.log(bigger(12, 3, 4));
-console.log(bigger("a", 12));
+console.log(whoIsbigger(14, -2));
+console.log(whoIsbigger(12, 3, 4));
+console.log(whoIsbigger("a", 12));
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
@@ -158,6 +160,8 @@ function splitMe(str) {
   return str.split(" ");
 }
 console.log(splitMe("I love coding"));
+console.log(splitMe("stringa con più parole per vedere se funziona"));
+
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
@@ -213,9 +217,9 @@ console.log("\n");
 // controllo solamente la struttura generale. eventuali caratteri speciali sarebbe meglio controllarli con regex
 function isThisAnEmail(str) {
   arrMail = str.split("@");
-  console.log(arrMail);
+  // console.log(arrMail);
   if (arrMail[0] && arrMail[1]) {
-    if (arrMail[0] && arrMail[1].includes(".")) {
+    if (arrMail[1].includes(".")) {
       let dominio = arrMail[1].split(".");
       if (dominio[dominio.length - 1].length > 1) {
         return true;
@@ -233,6 +237,8 @@ console.log(isThisAnEmail("ale91.dallas@gmail"));
 console.log(isThisAnEmail("@gmail.com"));
 console.log(isThisAnEmail("ale91.dallas@gmail.it"));
 console.log(isThisAnEmail("ale91.dallas@gmail.i"));
+console.log(isThisAnEmail("ale91.dallas@gmail.i.it"));
+
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
@@ -328,7 +334,9 @@ function howManyDays(day) {
   return days;
 }
 
+console.log(howManyDays("2023-12-25"));
 console.log(howManyDays("2022-11-13"));
+
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
@@ -489,6 +497,8 @@ function deleteProp(obj, str) {
 }
 
 console.log(deleteProp(me, "surname"));
+
+
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
@@ -501,20 +511,20 @@ console.log("\n");
 function newestMovie(list) {
   let newestYear = Number(list[0].Year);
   let newestTitle = list[0].Title;
-  console.log(newestYear);
-  console.log(newestTitle);
+  // console.log(newestYear);
+  // console.log(newestTitle);
   list.forEach((element) => {
     if (Number(element.Year) > newestYear) {
       newestYear = Number(element.Year);
       newestTitle = element.Title;
     }
   });
-  console.log(newestYear);
-  console.log(newestTitle);
-  return newestTitle;
+  // console.log(newestYear);
+  // console.log(newestTitle);
+  return newestTitle + ' - ' + newestYear;
 }
 
-newestMovie(movies);
+console.log(newestMovie(movies));
 /* ESERCIZIO 13
   Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
 */
@@ -524,6 +534,8 @@ console.log("----ESERCIZIO 13---");
 console.log("-------------------");
 console.log("\n");
 
+
+// sono tutti Type: 'movie';
 function countMovies(list) {
   return list.length;
 }
@@ -538,7 +550,7 @@ console.log("----ESERCIZIO 14---");
 console.log("-------------------");
 console.log("\n");
 
-let onlyTheYears = (list) => {
+let onlyTheYears = list => {
   let years = [];
   list.forEach((item) => {
     years.push(Number(item.Year));
@@ -547,6 +559,7 @@ let onlyTheYears = (list) => {
 };
 
 console.log(onlyTheYears(movies));
+
 /* ESERCIZIO 15
   Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
 */
@@ -556,10 +569,13 @@ console.log("----ESERCIZIO 15---");
 console.log("-------------------");
 console.log("\n");
 
+
+// per millennio scorso, intendo quelli usciti prima del 2000.
+// altrimenti basta cambiare segno (>=) alla condizione.
 let onlyInLastMillennium = (list) => {
   let years = [];
   list.forEach((item) => {
-    if (item.Year >= 2000) {
+    if (item.Year < 2000) {
       years.push(Number(item.Year));
     }
   });
@@ -605,9 +621,7 @@ let searchByTitle = (list, str) => {
 
 console.log(searchByTitle(movies, "Avengers"));
 console.log(searchByTitle(movies, "lord"));
-
-
-
+console.log(searchByTitle(movies, "WAR"));
 
 
 
@@ -710,7 +724,7 @@ console.log("\n");
 
 function printAllElements(tag) {
   let elements = document.querySelectorAll(tag);
-  elements.forEach((item) => console.log(item.innerText));
+  elements.forEach(item => console.log(item.innerText));
 }
 
 printAllElements('td');
@@ -731,7 +745,7 @@ let redLinks = () => {
 }
 
 redLinks();
-console.log('risultato a video')
+console.log('risultato sulla pagina');
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
@@ -753,6 +767,8 @@ addElementToUlwithId('myList', 'nuovo elemento');
 addElementToUlwithId('myList', 'altro elemento');
 
 
+console.log('risultato sulla pagina');
+
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
@@ -767,6 +783,9 @@ function emptyListById(id){
   ul.innerHTML = ''
 }
 emptyListById('myList');
+
+
+console.log('risultato sulla pagina');
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
@@ -784,6 +803,7 @@ let addClassToElement = (tag, className) => {
 }
 addClassToElement('tr', 'test');
 
+console.log('risultato sulla pagina');
 
 // [EXTRA] JS Avanzato
 
